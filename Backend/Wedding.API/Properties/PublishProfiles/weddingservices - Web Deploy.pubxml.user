@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAUfA06Q8fGUOJapI4KZGPfAAAAAACAAAAAAAQZgAAAAEAACAAAABW0Xv9+QFzon3++AzRYG0cFOEFSA7OmrsmaaOVUzBrMwAAAAAOgAAAAAIAACAAAADeQFwm2vsl4qr7WdqK2XHcSJcdOYn9hYtMnPhlLj4eZIAAAADuEucRy+Er8aSdQBHN7EuEYxdRPRW4KGUs84Om40MrtwVcE1vhnmbiI4HaqcxPa56t/lSYQ+1f8kf7Nl1I1LZKkZC05g5FlDj1HwDXJl9RN0sbVws83jC8EiFgxkhYjHBlLk4SwDdSdOpq7BlrnVUkef+hNpq7nSv69nKCS1o4G0AAAAAARfw8lm42N88O7zx8VdHeqUnXctvGBibv5okRoezR/2Udd4SOM0kOA5Joo/511P7Dc9XoCJOnIfBq9SIj8HD6</EncryptedPassword>
+    <History>True|2024-11-06T01:08:20.6194363Z||;False|2024-11-06T08:04:54.9421818+07:00||;True|2024-11-05T18:37:44.3181907+07:00||;False|2024-11-05T18:20:36.3178504+07:00||;False|2024-11-05T18:18:16.7529453+07:00||;False|2024-11-05T18:16:22.1632392+07:00||;False|2024-11-05T18:14:05.5640220+07:00||;True|2024-11-04T14:29:07.6232226+07:00||;False|2024-11-04T14:24:44.1309953+07:00||;True|2024-11-01T11:51:44.6997196+07:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnectionAzure">
+      <Value>Data Source=weddingdatabase.database.windows.net,1433%3bInitial Catalog=weddingdatabase%3bUser ID=weddingdatabase%3bPassword=0329257952aA!</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Wedding.DataAccess.Context.ApplicationDbContext">
+      <Value>Data Source=weddingdatabase.database.windows.net,1433%3bInitial Catalog=weddingdatabase%3bUser ID=weddingdatabase%3bPassword=0329257952aA!</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

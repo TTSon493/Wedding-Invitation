@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="weddingservices" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\FPT\\Semester\ 7\\SWD392\\Project\\Wedding\\Wedding\.API\\obj\\Release\\net8\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="Wedding.DataAccess.Context.ApplicationDbContext" description="" value="Data Source=weddingdatabase.database.windows.net,1433;Initial Catalog=weddingdatabase;User ID=weddingdatabase;Password=0329257952aA!" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\FPT\\Semester\ 7\\SWD392\\Project\\Wedding\\Wedding\.API\\obj\\Release\\net8\.0\\PubTmp\\EFSQLScripts\\Wedding\.DataAccess\.Context\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

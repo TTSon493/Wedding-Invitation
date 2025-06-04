@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "apis1": {
+      "restored": true,
+      "restoreTime": "2024-11-01T04:48:53.9350804Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2024-11-01T04:49:33.221433Z"
+    }
+  },
+  "parameters": {
+    "apis1.resourceGroupName": {
+      "Name": "apis1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "TicketHub"
+    },
+    "apis1.subscriptionId": {
+      "Name": "apis1.subscriptionId",
+      "Type": "subscription",
+      "Value": "3be269ad-1092-4edd-9362-647152c585c4"
+    }
+  }
+}

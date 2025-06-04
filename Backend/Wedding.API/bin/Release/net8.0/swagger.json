@@ -1,0 +1,5289 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Wedding.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/activities": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Activity"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateActivityLogDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/activities/{id}": {
+      "get": {
+        "tags": [
+          "Activity"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Activity"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateActivityLogDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Activity"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/customer/sign-up": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/RegisterCustomerDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/user/avatar": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/user/avatar/display/{userId}": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ForgotPasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/send-verify-email": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SendVerifyEmailDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/verify-email": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/change-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sign-in": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SignDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/JwtTokenDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/check-email-exist": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/check-phone-number-exist": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/customer/profile": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CompleteCustomerProfileDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomerProfileDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/google/sign-in": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/SignInByGoogleDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/user/info": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/lock": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LockUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/unlock": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LockUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/card-management": {
+      "get": {
+        "tags": [
+          "CardManagement"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CardManagement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateCardManagementDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/card-management/{id}": {
+      "get": {
+        "tags": [
+          "CardManagement"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "CardManagement"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateCardManagementDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CardManagement"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/cart": {
+      "get": {
+        "tags": [
+          "Cart"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/cart/details": {
+      "post": {
+        "tags": [
+          "Cart"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddToCartDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/cart/details/{detailsId}": {
+      "delete": {
+        "tags": [
+          "Cart"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cartDetailsId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "detailsId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Customer"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateCustomerDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/{customerId}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/activate/{customerId}": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/deactivate/{customerId}": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "customerId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/export/{month}/{year}": {
+      "post": {
+        "tags": [
+          "Customer"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "month",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "in": "path",
+            "name": "year",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/customer/download/{fileName}": {
+      "get": {
+        "tags": [
+          "Customer"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/email-template": {
+      "get": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateEmailTemplateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/email-template/{id}": {
+      "get": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateEmailTemplateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "EmailTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/event": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Event"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateEventDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/event/{id}": {
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Event"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateEventDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Event"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/event/background/{EventId}": {
+      "post": {
+        "tags": [
+          "Event"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EventId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Event"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EventId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/event-photo": {
+      "get": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateEventPhotoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/event-photo/{id}": {
+      "get": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateEventPhotoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/event-photo/background/{EventPhotoId}": {
+      "post": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EventPhotoId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "EventPhoto"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EventPhotoId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/guest-list": {
+      "get": {
+        "tags": [
+          "GuestList"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "GuestList"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateGuestListDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/guest-list/{id}": {
+      "get": {
+        "tags": [
+          "GuestList"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "GuestList"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateGuestListDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "GuestList"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/guests": {
+      "get": {
+        "tags": [
+          "Guests"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Guests"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateGuestDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/guests/{id}": {
+      "get": {
+        "tags": [
+          "Guests"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Guests"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateGuestDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Guests"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation": {
+      "get": {
+        "tags": [
+          "Invitation"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Invitation"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateInvitationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation/{id}": {
+      "get": {
+        "tags": [
+          "Invitation"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Invitation"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateInvitationDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Invitation"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation/background/{InvationId}": {
+      "post": {
+        "tags": [
+          "Invitation"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "InvationId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Invitation"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "InvationId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/invitation-html": {
+      "get": {
+        "tags": [
+          "InvitationHtml"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "InvitationHtml"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateInvitationHtmlDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation-html/{id}": {
+      "get": {
+        "tags": [
+          "InvitationHtml"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "InvitationHtml"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateInvitationHtmlDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InvitationHtml"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation-template": {
+      "get": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateInvitationTemplateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation-template/{id}": {
+      "get": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateInvitationTemplateDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/invitation-template/background/{TemplateId}": {
+      "post": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TemplateId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "InvitationTemplate"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TemplateId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "customerId",
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/{order-header-id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderHeaderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "order-header-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/status/{order-header-id}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderHeaderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "order-header-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/stripe/checkout": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PayWithStripeDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/stripe/validate": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ValidateWithStripeDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/order/confirm/{order-header-id}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "orderHeaderId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "path",
+            "name": "order-header-id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/system/balance": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/customer/balance": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/transaction": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "userId",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/stripe/account": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateStripeConnectedAccountDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/stripe/transfer": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateStripeTransferDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/stripe/payout": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateStripePayoutDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/stripe/card": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AddStripeCardDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/payment/vnpay/create-payment": {
+      "post": {
+        "tags": [
+          "Payment"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/PaymentInformationModel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/payment": {
+      "get": {
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/website/company": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Website"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateCompanyDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/website/privacy": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Website"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreatePrivacyDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Website"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatePrivacyDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/website/privacy/{id}": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/website/term-of-use": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Website"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateTermOfUseDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Website"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateTermOfUseDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/website/term-of-use/{id}": {
+      "get": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Website"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/wedding": {
+      "get": {
+        "tags": [
+          "Wedding"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filterOn",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "filterQuery",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sortBy",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "isAscending",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageNumber",
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Wedding"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/CreateWeddingDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/wedding/{id}": {
+      "get": {
+        "tags": [
+          "Wedding"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Wedding"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdateWeddingDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Wedding"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      }
+    },
+    "/api/wedding/background/{WeddingId}": {
+      "post": {
+        "tags": [
+          "Wedding"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "WeddingId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "formData",
+            "name": "File",
+            "required": true,
+            "type": "array",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ResponseDTO"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Wedding"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "WeddingId",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddStripeCardDTO": {
+      "type": "object",
+      "properties": {
+        "connectedAccountId": {
+          "type": "string"
+        },
+        "cardToken": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "AddToCartDTO": {
+      "required": [
+        "cardId"
+      ],
+      "type": "object",
+      "properties": {
+        "cardId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ChangePasswordDTO": {
+      "required": [
+        "confirmNewPassword",
+        "newPassword",
+        "oldPassword"
+      ],
+      "type": "object",
+      "properties": {
+        "oldPassword": {
+          "format": "password",
+          "maxLength": 100,
+          "minLength": 8,
+          "type": "string"
+        },
+        "newPassword": {
+          "format": "password",
+          "maxLength": 100,
+          "minLength": 8,
+          "type": "string"
+        },
+        "confirmNewPassword": {
+          "format": "password",
+          "maxLength": 100,
+          "minLength": 8,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CompleteCustomerProfileDTO": {
+      "required": [
+        "address",
+        "birthDate",
+        "cardName",
+        "cardNumber",
+        "cardProvider",
+        "country",
+        "gender",
+        "phoneNumber"
+      ],
+      "type": "object",
+      "properties": {
+        "country": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "format": "tel",
+          "minLength": 1,
+          "type": "string"
+        },
+        "address": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "gender": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardNumber": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardProvider": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardName": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateActivityLogDTO": {
+      "type": "object",
+      "properties": {
+        "logId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        },
+        "timeStamp": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateCardManagementDTO": {
+      "type": "object",
+      "properties": {
+        "cardId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "invitationId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "attendStatus": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateEmailTemplateDTO": {
+      "type": "object",
+      "properties": {
+        "templateName": {
+          "type": "string"
+        },
+        "senderName": {
+          "type": "string"
+        },
+        "senderEmail": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "subjectLine": {
+          "type": "string"
+        },
+        "preHeaderText": {
+          "type": "string"
+        },
+        "personalizationTags": {
+          "type": "string"
+        },
+        "bodyContent": {
+          "type": "string"
+        },
+        "footerContent": {
+          "type": "string"
+        },
+        "callToAction": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "recipientType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateEventDTO": {
+      "type": "object",
+      "properties": {
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "weddingId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "eventDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "eventLocation": {
+          "type": "string"
+        },
+        "eventPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateEventPhotoDTO": {
+      "type": "object",
+      "properties": {
+        "eventPhotoId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "photoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "photoType": {
+          "type": "string"
+        },
+        "uploadedDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateGuestDTO": {
+      "type": "object",
+      "properties": {
+        "guestId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "guestListId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "attend": {
+          "type": "string"
+        },
+        "gift": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateGuestListDTO": {
+      "type": "object",
+      "properties": {
+        "guestListId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "guestId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "eventId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "guestName": {
+          "type": "string"
+        },
+        "attendStatus": {
+          "type": "string"
+        },
+        "checkinTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "guestGift": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateInvitationDTO": {
+      "type": "object",
+      "properties": {
+        "invitationId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "weddingId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "templateId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "invationLocation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "invitationPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customerMessage": {
+          "type": "string"
+        },
+        "customerTextColor": {
+          "type": "string"
+        },
+        "shareableLink": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateInvitationHtmlDTO": {
+      "type": "object",
+      "properties": {
+        "htmlId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "invitationId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "htmlContent": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateddTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateInvitationTemplateDTO": {
+      "type": "object",
+      "properties": {
+        "templateId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "templateName": {
+          "type": "string"
+        },
+        "backgroundImageUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "textColor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "textFont": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdBy": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "invitationId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreatePrivacyDTO": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateStripeConnectedAccountDTO": {
+      "type": "object",
+      "properties": {
+        "refreshUrl": {
+          "type": "string"
+        },
+        "returnUrl": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateStripePayoutDTO": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateStripeTransferDTO": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "amount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currency": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateTermOfUseDTO": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "CreateWeddingDTO": {
+      "type": "object",
+      "properties": {
+        "weddingId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "brideName": {
+          "type": "string"
+        },
+        "groomName": {
+          "type": "string"
+        },
+        "weddingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "weddingLocation": {
+          "type": "string"
+        },
+        "weddingPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ForgotPasswordDTO": {
+      "required": [
+        "emailOrPhone"
+      ],
+      "type": "object",
+      "properties": {
+        "emailOrPhone": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "JwtTokenDTO": {
+      "type": "object",
+      "properties": {
+        "accessToken": {
+          "type": "string"
+        },
+        "refreshToken": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "LockUserDTO": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PayWithStripeDTO": {
+      "type": "object",
+      "properties": {
+        "approvedUrl": {
+          "type": "string"
+        },
+        "cancelUrl": {
+          "type": "string"
+        },
+        "orderHeaderId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "PaymentInformationModel": {
+      "type": "object",
+      "properties": {
+        "orderType": {
+          "type": "string"
+        },
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "orderDescription": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "RegisterCustomerDTO": {
+      "required": [
+        "address",
+        "birthDate",
+        "confirmPassword",
+        "country",
+        "email",
+        "fullName",
+        "gender",
+        "password",
+        "phoneNumber"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "format": "email",
+          "minLength": 1,
+          "type": "string"
+        },
+        "password": {
+          "format": "password",
+          "minLength": 1,
+          "pattern": "^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?\"{}|<>])(?=.*\\d).{6,}$",
+          "type": "string"
+        },
+        "confirmPassword": {
+          "format": "password",
+          "minLength": 1,
+          "type": "string"
+        },
+        "fullName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "address": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "country": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "gender": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "format": "tel",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ResetPasswordDTO": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ResponseDTO": {
+      "type": "object",
+      "properties": {
+        "result": { },
+        "isSuccess": {
+          "type": "boolean"
+        },
+        "statusCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SendVerifyEmailDTO": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "format": "email",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SignDTO": {
+      "required": [
+        "email",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "password": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SignInByGoogleDTO": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateActivityLogDTO": {
+      "type": "object",
+      "properties": {
+        "logId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        },
+        "entity": {
+          "type": "string"
+        },
+        "timeStamp": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateCardManagementDTO": {
+      "type": "object",
+      "properties": {
+        "cardId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "invitationId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "attendStatus": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateCompanyDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "foundedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateCustomerDTO": {
+      "required": [
+        "address",
+        "birthDate",
+        "country",
+        "customerId",
+        "fullName",
+        "gender"
+      ],
+      "type": "object",
+      "properties": {
+        "customerId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "gender": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fullName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "country": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "address": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateCustomerProfileDTO": {
+      "required": [
+        "address",
+        "birthDate",
+        "cardName",
+        "cardNumber",
+        "cardProvider",
+        "country",
+        "fullName",
+        "gender"
+      ],
+      "type": "object",
+      "properties": {
+        "gender": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fullName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "birthDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "country": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "address": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardNumber": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardName": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "cardProvider": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateEmailTemplateDTO": {
+      "type": "object",
+      "properties": {
+        "templateName": {
+          "type": "string"
+        },
+        "senderName": {
+          "type": "string"
+        },
+        "senderEmail": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "subjectLine": {
+          "type": "string"
+        },
+        "preHeaderText": {
+          "type": "string"
+        },
+        "personalizationTags": {
+          "type": "string"
+        },
+        "bodyContent": {
+          "type": "string"
+        },
+        "footerContent": {
+          "type": "string"
+        },
+        "callToAction": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "recipientType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateEventDTO": {
+      "type": "object",
+      "properties": {
+        "eventDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "eventLocation": {
+          "type": "string"
+        },
+        "eventPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateEventPhotoDTO": {
+      "type": "object",
+      "properties": {
+        "photoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "photoType": {
+          "type": "string"
+        },
+        "uploadedDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateGuestDTO": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "attend": {
+          "type": "string"
+        },
+        "gift": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateGuestListDTO": {
+      "type": "object",
+      "properties": {
+        "guestName": {
+          "type": "string"
+        },
+        "attendStatus": {
+          "type": "string"
+        },
+        "checkinTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "guestGift": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateInvitationDTO": {
+      "type": "object",
+      "properties": {
+        "weddingId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "templateId": {
+          "type": "string"
+        },
+        "invationLocation": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "invitationPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "customerMessage": {
+          "type": "string"
+        },
+        "customerTextColor": {
+          "type": "string"
+        },
+        "shareableLink": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateInvitationHtmlDTO": {
+      "type": "object",
+      "properties": {
+        "htmlContent": {
+          "type": "string"
+        },
+        "createdTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateddTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateInvitationTemplateDTO": {
+      "type": "object",
+      "properties": {
+        "templateName": {
+          "type": "string"
+        },
+        "backgroundImageUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "textColor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "textFont": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string"
+        },
+        "createdBy": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdatePrivacyDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateTermOfUseDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "isActive": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "UpdateWeddingDTO": {
+      "type": "object",
+      "properties": {
+        "brideName": {
+          "type": "string"
+        },
+        "groomName": {
+          "type": "string"
+        },
+        "weddingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "weddingLocation": {
+          "type": "string"
+        },
+        "weddingPhotoUrl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ValidateWithStripeDTO": {
+      "type": "object",
+      "properties": {
+        "orderHeaderId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Please enter your token with this format: \"Bearer YOUR_TOKEN\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
