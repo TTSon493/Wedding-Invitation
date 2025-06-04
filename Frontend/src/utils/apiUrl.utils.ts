@@ -1,0 +1,19 @@
+export const SIGN_UP_CUSTOMER_URL = "/auth/customer/sign-up";
+export const SEND_VERIFY_EMAIL_URL = "/auth/send-verify-email";
+export const GET_CUSTOMER_INFO_URL = "/auth/user/info";
+export const SIGN_IN_CUSTOMER_URL = "/auth/sign-in";
+export const SIGN_IN_GOOGLE_URL = "/auth/google/sign-in";
+export const VERIFY_EMAIL_URL = "/auth/verify-email";
+export const REFRESH_URL = "/auth/refresh";
+export const PUT_CUSTOMER_INFO_URL = "/auth/customer/profile";
+export const GET_ALL_CUSTOMER_URL = "/customer"
+export const GET_CUSTOMER_BY_ID = "/customer";
+export const PUT_CUSTOMER = "/customer"
+export const CREATE_INVITATION_TEMPLATE = "/invitation-template";
+export const GET_INVITATION_TEMPLATE = "/invitation-template";
+export const GET_INVITATION_TEMPLATE_BY_ID = "/invitation-template";
+export const PUT_INVITATION_TEMPLATE = "/invitation-template"
+export const DELETE_INVITATION_TEMPLATE = "/invitation-template"
+export const UPLOAD_IMAGE_INVITATION_TEMPLATE = "/invitation-template/background"
+export const GET_IMAGE_INVITATION_TEMPLATE = "/invitation-template/background"
+
